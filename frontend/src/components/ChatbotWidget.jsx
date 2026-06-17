@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { X, Send, Bot, Minimize2, Maximize2, Sparkles } from 'lucide-react';
-import axios from 'axios';
+import api from '../api/axios';
 
 const QUICK_PROMPTS = [
   '🎯 What is AlumSphere?',
@@ -83,7 +83,7 @@ export default function ChatbotWidget() {
 
     try {
       const payload = updated.map(m => ({ role: m.role, content: m.content }));
-      const { data } = await axios.post('/api/ai/chatbot', { messages: payload });
+      const { data } = await api.post('/api/ai/chatbot', { messages: payload });
       const botMsg = { role: 'assistant', content: data.reply };
       setMessages(prev => [...prev, botMsg]);
       if (!open) setUnread(n => n + 1);
