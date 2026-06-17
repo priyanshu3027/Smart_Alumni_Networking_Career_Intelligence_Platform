@@ -31,7 +31,7 @@ export default function Network() {
     try {
       setLoading(true);
       const [reqRes, suggestRes] = await Promise.all([
-        api.get('/connections/requests'),
+        api.get('/connections/pending'),
         api.get('/ai/connection-suggestions')
       ]);
       setRequests(reqRes.data.requests || []);

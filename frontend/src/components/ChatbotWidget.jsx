@@ -83,7 +83,7 @@ export default function ChatbotWidget() {
 
     try {
       const payload = updated.map(m => ({ role: m.role, content: m.content }));
-      const { data } = await api.post('/api/ai/chatbot', { messages: payload });
+      const { data } = await api.post('/ai/chatbot', { messages: payload });
       const botMsg = { role: 'assistant', content: data.reply };
       setMessages(prev => [...prev, botMsg]);
       if (!open) setUnread(n => n + 1);
